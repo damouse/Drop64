@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="description" content="mupen64plus via emscripten : A port of the popular Nintendo 64 emulator for the web" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/stylesheets/stylesheet.css">
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <title>Drop64</title>
+</head>
+
+<body>
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+      <h3>
+      Controls
+    </h3>
+      <p>
+        Analog stick: Arrow keys
+        <br/> B button: F
+        <br/> A button: G
+        <br/> Z Trigger: Z
+        <br/> L/R Trigger: X,C
+        <br/> C buttons U/D/L/R: I,K,J,L
+        <br/> Start: Enter
+        <br/> DPAD U/D/L/R: W,S,A,D
+        <br/>
+      </p>
+      <h3>
+      Play
+    </h3>
+      <p>
+        <style>
+        .emscripten {
+          padding-right: 0;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+        }
+        
+        div.emscripten {
+          text-align: center;
+        }
+        
+        div.emscripten_border {
+          border: 1px solid black;
+        }
+        /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+        
+        canvas.emscripten {
+          border: 0px none;
+        }
+        
+        #emscripten_logo {
+          display: inline-block;
+          margin: 0;
+        }
+        
+        .spinner {
+          height: 30px;
+          width: 30px;
+          margin: 0;
+          margin-top: 20px;
+          margin-left: 20px;
+          display: inline-block;
+          vertical-align: top;
+          -webkit-animation: rotation .8s linear infinite;
+          -moz-animation: rotation .8s linear infinite;
+          -o-animation: rotation .8s linear infinite;
+          animation: rotation 0.8s linear infinite;
+          border-left: 5px solid rgb(235, 235, 235);
+          border-right: 5px solid rgb(235, 235, 235);
+          border-bottom: 5px solid rgb(235, 235, 235);
+          border-top: 5px solid rgb(120, 120, 120);
+          border-radius: 100%;
+          background-color: rgb(189, 215, 46);
+        }
+        
+        @-webkit-keyframes rotation {
+          from {
+            -webkit-transform: rotate(0deg);
+          }
+          to {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+        
+        @-moz-keyframes rotation {
+          from {
+            -moz-transform: rotate(0deg);
+          }
+          to {
+            -moz-transform: rotate(360deg);
+          }
+        }
+        
+        @-o-keyframes rotation {
+          from {
+            -o-transform: rotate(0deg);
+          }
+          to {
+            -o-transform: rotate(360deg);
+          }
+        }
+        
+        @keyframes rotation {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        
+        #status {
+          display: inline-block;
+          vertical-align: top;
+          margin-top: 30px;
+          margin-left: 20px;
+          font-weight: bold;
+          color: rgb(120, 120, 120);
+        }
+        
+        #progress {
+          height: 20px;
+          width: 30px;
+        }
+        
+        #controls {
+          display: inline-block;
+          float: right;
+          vertical-align: top;
+          margin-top: 30px;
+          margin-right: 20px;
+        }
+        
+        #output {
+          width: 100%;
+          height: 200px;
+          margin: 0 auto;
+          margin-top: 10px;
+          display: block;
+          background-color: black;
+          color: white;
+          font-family: 'Lucida Console', Monaco, monospace;
+          outline: none;
+        }
+        </style>
+        <div class="spinner" id='spinner'></div>
+        <div class="emscripten" id="status">Downloading...</div>
+        <div id='filechooser' style="visibility:hidden;">
+          <input type="file" id="files" name="files[]" multiple />
+          <output id="list"></output>
+          <script>
+          function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+            if (files.length != 1)
+              return;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              var rom = files[0].name;
+              FS.writeFile(rom, new Uint8Array(e.target.result), {
+                encoding: 'binary'
+              });
+              document.getElementById('filechooser').style.visibility = 'hidden';
+              Module['callMain'](['--resolution', '640x480', rom]);
+            };
+            reader.readAsArrayBuffer(files[0]);
+
+          }
+
+          document.getElementById('files').addEventListener('change', handleFileSelect, false);
+          </script>
+        </div>
+        <div class="emscripten">
+          <progress value="0" max="100" id="progress" hidden=1></progress>
+        </div>
+        <div class="emscripten_border">
+          <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+        </div>
+        <script type='text/javascript' src='assets/main.js'></script>
+        <script async type="text/javascript" src="assets/mupen64plus-ui-console.js"></script>
+      </p>
+      <!-- FOOTER  -->
+      <div id="footer_wrap" class="outer">
+        <footer class="inner">
+          <p class="copyright">mupen64plus via emscripten maintained by <a href="https://github.com/jquesnelle">jquesnelle</a></p>
+          <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        </footer>
+      </div>
+</body>
+
+</html>
