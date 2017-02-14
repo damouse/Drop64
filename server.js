@@ -14,4 +14,5 @@ io.on('connection', (socket) => {
   })
 });
 
+console.log("Server starting on port: ", port);
 http.listen(port, '0.0.0.0');;

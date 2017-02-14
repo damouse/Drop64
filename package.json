@@ -12,11 +12,8 @@
     "webpack",
     "node"
   ],
-  "author": "Christian Alfoni",
+  "author": "Mickey Barboi",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/christianalfoni/webpack-express-boilerplate/issues"
-  },
   "homepage": "https://github.com/christianalfoni/webpack-express-boilerplate",
   "scripts": {
     "test": "",
