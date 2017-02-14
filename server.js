@@ -9,10 +9,11 @@ app.use('/assets', express.static('./app'));
 app.get('/', (req, res) => { res.sendFile('index.html', { root: './app' }) })
 
 io.on('connection', (socket) => {
-  socket.on("input", (m) => {
-    console.log(m);
+  socket.on("controller", (m) => {
+    console.log('Server: ', m);
+    io.emit('input', m);
   })
 });
 
 console.log("Server starting on port: ", port);
-http.listen(port, '0.0.0.0');;
+http.listen(port, '0.0.0.0');

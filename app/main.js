@@ -68,7 +68,15 @@ var Module = {
 
 Module.setStatus('Downloading...');
 
-var socket = io.connect('localhost:3000');
+var sock = io.connect('localhost:3000');
+
+sock.on('connect', () => {
+  console.log("Connected");
+
+  sock.on("input", (m) => {
+    console.log(m);
+  })
+});
 
 function makeKeyboardEvent(event, key) {
   var e = document.createEvent("KeyboardEvent");
@@ -82,14 +90,14 @@ function makeKeyboardEvent(event, key) {
 }
 
 function mycode() {
-  makeKeyboardEvent("keydown", 'Enter');
+  // makeKeyboardEvent("keydown", 'Enter');
 
-  setTimeout(function() {
-    makeKeyboardEvent("keyup", 'Enter');
-  }, 100);
+  // setTimeout(function() {
+  //   makeKeyboardEvent("keyup", 'Enter');
+  // }, 100);
 
   // console.log("Emitting")
-  // socket.emit("input", "Hello");
+  // socket.emit("input", "Display");
 }
 
 
