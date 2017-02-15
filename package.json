@@ -16,11 +16,12 @@
   "license": "MIT",
   "homepage": "https://github.com/christianalfoni/webpack-express-boilerplate",
   "scripts": {
-    "start": "node src/server",
+    "start": "node src/server"
   },
   "dependencies": {
     "babel-cli": "^6.4.0",
     "babel-core": "^6.22.1",
+    "ngtouchstart": "^1.0.1",
     "socket.io": "^1.7.2"
   },
   "devDependencies": {

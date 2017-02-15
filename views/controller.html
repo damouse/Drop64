@@ -12,29 +12,31 @@
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-touch.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-touch.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="assets/three.min.js"></script>
     <script src="assets/mathbox/build/mathbox-bundle.js"></script>
     <script src="assets/cbuffer/cbuffer.js"></script>
     <script src="assets/dat.gui/dat.gui.js"></script>
+    <script src='assets/ngTouchStart.min.js'></script>
 
     <script type='text/javascript' src='assets/controller.js'></script>
 
 </head>
 
 <body ng-app="controller" ng-controller='RootController' id='main-content-wrap'>
+    {{ counter }}
     <figure id="nespad">
         <div class="cord"></div>
         <section class="dpad-pane">
             <div class="dpad-hole"></div>
             <div id="dpad">
                 <canvas height="150" id="dpad-body" width="150"></canvas>
-                <button class="button" id="up" ng-mousedown='press("ArrowUp", 38)' ng-mouseup='release("ArrowUp", 38)'></button>
-                <button class="button" id="right" ng-mousedown='press("ArrowRight", 39)' ng-mouseup='release("ArrowRight", 39)'></button>
-                <button class="button" id="down" ng-mousedown='press("ArrowDown", 40)' ng-mouseup='release("ArrowDown", 40)'></button>
-                <button class="button" id="left" ng-mousedown='press("ArrowLeft", 37)' ng-mouseup='release("ArrowLeft", 37)'></button>
+                <button class="button" id="up" my-touchstart='touchesStarted()' my-touchstart='press("ArrowUp", 38)' my-touchend='release("ArrowUp", 38)'></button>
+                <button class="button" id="right" my-touchstart='press("ArrowRight", 39)' my-touchend='release("ArrowRight", 39)'></button>
+                <button class="button" id="down" my-touchstart='press("ArrowDown", 40)' my-touchend='release("ArrowDown", 40)'></button>
+                <button class="button" id="left" my-touchstart='press("ArrowLeft", 37)' my-touchend='release("ArrowLeft", 37)'></button>
             </div>
         </section>
         <section class="menu-pane">
@@ -43,8 +45,8 @@
                 <label class="start" for="start">Start</label>
             </div>
             <div class="buttons">
-                <button class="button select" id="select" ng-mousedown='press("z", 90)' ng-mouseup='release("z", 90)'>Select</button>
-                <button class="button start" id="start" ng-mousedown='press("Enter", 13)' ng-mouseup='release("Enter", 13)'>Start</button>
+                <button class="button select" id="select" my-touchstart='press("z", 90)' my-touchend='release("z", 90)'>Select</button>
+                <button class="button start" id="start" my-touchstart='press("Enter", 13)' my-touchend='release("Enter", 13)'>Start</button>
             </div>
         </section>
         <section class="action-pane">
@@ -53,10 +55,10 @@
             </div>
             <div class="buttons">
                 <label class="label">B
-                    <button class="button" id="b" ng-mousedown='press("f", 70)' ng-mouseup='release("f", 70)'></button>
+                    <button class="button" id="b" my-touchstart='press("f", 70)' my-touchend='release("f", 70)'></button>
                 </label>
                 <label class="label">A
-                    <button class="button" id="a" ng-mousedown='press("g", 71)' ng-mouseup='release("g", 71)'></button>
+                    <button class="button" id="a" my-touchstart='press("g", 71)' my-touchend='release("g", 71)'></button>
                 </label>
             </div>
         </section>
@@ -72,20 +74,20 @@
         <div class='row main-row'>
             <div class='controls left-controls text-center'>
                 <div class='row'>
-                    <button id='aaa' type='button' class='gamepad-button' ng-mousedown='press("ArrowUp", 38)' ng-mouseup='release("ArrowUp", 38)'>Up</button>
+                    <button id='aaa' type='button' class='gamepad-button' my-touchstart='press("ArrowUp", 38)' my-touchend='release("ArrowUp", 38)'>Up</button>
                 </div>
-                <button class='gamepad-button' ng-mousedown='press("ArrowLeft", 37)' ng-mouseup='release("ArrowLeft", 37)'>Left</button>
-                <button class='gamepad-button' ng-mousedown='press("ArrowDown", 40)' ng-mouseup='release("ArrowDown", 40)'>Down</button>
-                <button class='gamepad-button' ng-mousedown='press("ArrowRight", 39)' ng-mouseup='release("ArrowRight", 39)'>Right</button>
+                <button class='gamepad-button' my-touchstart='press("ArrowLeft", 37)' my-touchend='release("ArrowLeft", 37)'>Left</button>
+                <button class='gamepad-button' my-touchstart='press("ArrowDown", 40)' my-touchend='release("ArrowDown", 40)'>Down</button>
+                <button class='gamepad-button' my-touchstart='press("ArrowRight", 39)' my-touchend='release("ArrowRight", 39)'>Right</button>
             </div>
             <div class='controls mid-controls text-center'>
                 {{ counter }}
-                <button class='gamepad-button' ng-mousedown='press("Enter", 13)' ng-mouseup='release("Enter", 13)'>Start</button>
-                <button class='gamepad-button' ng-mousedown='press("z", 90)' ng-mouseup='release("z", 90)'>Z</button>
+                <button class='gamepad-button' my-touchstart='press("Enter", 13)' my-touchend='release("Enter", 13)'>Start</button>
+                <button class='gamepad-button' my-touchstart='press("z", 90)' my-touchend='release("z", 90)'>Z</button>
             </div>
             <div class='controls right-controls text-center'>
-                <button class='gamepad-button' ng-mousedown='press("g", 71)' ng-mouseup='release("g", 71)'>A</button>
-                <button class='gamepad-button' ng-mousedown='press("f", 70)' ng-mouseup='release("f", 70)'>B</button>
+                <button class='gamepad-button' my-touchstart='press("g", 71)' my-touchend='release("g", 71)'>A</button>
+                <button class='gamepad-button' my-touchstart='press("f", 70)' my-touchend='release("f", 70)'>B</button>
             </div>
         </div>
         <div class='row main-row'></div> -->
