@@ -3,20 +3,18 @@ const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', (req, res) => { res.sendFile('display.html', { root: 'views' }) })
-app.get('/controller', (req, res) => { res.sendFile('controller.html', { root: 'views' }) })
+app.get('/', function(req, res) { res.sendFile('display.html', { root: 'views' }) })
+app.get('/controller', function(req, res) { res.sendFile('controller.html', { root: 'views' }) })
 
-for (var d of["stylesheets", "vendor", "sensors", "src"]) {
-  app.use('/assets', express.static(d));
-}
+for (var d of["stylesheets", "vendor", "sensors", "src"]) { app.use('/assets', express.static(d)) }
 
-io.on('connection', (socket) => {
-  console.log("Connected");
+io.on('connection', function(socket) {
   socket.on("controller", function(m) {
     console.log(m);
     io.emit('input', m)
   });
   socket.on("command", function(m) {
+    console.log(m);
     io.emit('command', m);
   });
 });

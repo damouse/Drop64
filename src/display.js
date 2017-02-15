@@ -11,11 +11,11 @@ function makeKeyboardEvent(event, key, code) {
 // Start socket.io implementation
 var sock = io.connect(window.location.host);
 
-sock.on('connect', () => {
-  sock.emit('command', 'connected');
+sock.on('connect', function() {
+  sock.emit('command', 'Display Connected');
 
   // Turn each input key into a simulated browser keypress
-  sock.on("input", (m) => {
+  sock.on("input", function(m) {
     makeKeyboardEvent(m.event, m.button, m.code);
   })
 });

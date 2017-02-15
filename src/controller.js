@@ -23,10 +23,9 @@ angular.module('controller', [])
   var socket = io.connect($location.$$host + ':' + $location.$$port);
   $scope.counter = 0;
 
-  $scope.touchesStarted = function() {
-    console.log("Touch Started");
-    $scope.counter++;
-  }
+  socket.on('connect', function() {
+    socket.emit('command', 'Controller Connected');
+  });
 
 
   $scope.press = function(b, k) {
