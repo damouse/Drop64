@@ -374,7 +374,7 @@ body {
     display: inline-block;
     background-color: #ddd;
     border-radius: 0.4rem;
-    width: 4rem;
+    width: 40%;
     height: 4rem;
     margin-left: .8rem;
     text-align: right;
@@ -413,13 +413,49 @@ body {
     /* shadow */
 }
 
+.pane-wrapper {
+    display: inline-block;
+}
+
 
 /* Portrait */
 
-@media screen and (min-width: 320px) and (max-width: 767px) {
+@media only screen and ( max-width: 800px) {
     #nespad {
         transform: scale(1);
-        // margin: 120px 0px 0px 180px;
-        /* height: 50vh; */
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+    }
+    .pane-wrapper {
+        width: 32%;
+        display: inline-block;
+        height: 100%;
+        margin: 0;
+        /* margin-top: 10vh; */
+    }
+    .menu-pane {
+        margin-top: 13vh;
+    }
+    .dpad-pane {
+        margin: auto;
+        display: block;
+        margin-top: 40vh;
+    }
+    .action-pane .label {
+        /* width: 40%; */
+        height: 6rem;
+    }
+    .action-pane .button {
+        width: 8vw;
+        height: 7vw;
+    }
+    .nlogo {
+        height: 25vh;
+        margin-top: 10vh;
+    }
+    .buttons {
+        margin-left: 1em;
     }
 }
+
