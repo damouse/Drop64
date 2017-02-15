@@ -12,11 +12,13 @@ for (var d of["stylesheets", "vendor", "sensors", "src"]) {
 
 io.on('connection', (socket) => {
   console.log("Connected");
-  socket.on("controller", (m) => io.emit('input', m))
-  socket.on("command", (m) => {
+  socket.on("controller", function(m) {
     console.log(m);
+    io.emit('input', m)
+  });
+  socket.on("command", function(m) {
     io.emit('command', m);
-  })
+  });
 });
 
 const port = process.env.PORT || 3000;

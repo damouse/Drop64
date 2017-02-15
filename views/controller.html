@@ -26,14 +26,13 @@
 </head>
 
 <body ng-app="controller" ng-controller='RootController' id='main-content-wrap'>
-    {{ counter }}
     <figure id="nespad">
         <div class="cord"></div>
         <section class="dpad-pane">
             <div class="dpad-hole"></div>
             <div id="dpad">
                 <canvas height="150" id="dpad-body" width="150"></canvas>
-                <button class="button" id="up" my-touchstart='touchesStarted()' my-touchstart='press("ArrowUp", 38)' my-touchend='release("ArrowUp", 38)'></button>
+                <button class="button" id="up" my-touchstart='press("ArrowUp", 38)' my-touchend='release("ArrowUp", 38)'></button>
                 <button class="button" id="right" my-touchstart='press("ArrowRight", 39)' my-touchend='release("ArrowRight", 39)'></button>
                 <button class="button" id="down" my-touchstart='press("ArrowDown", 40)' my-touchend='release("ArrowDown", 40)'></button>
                 <button class="button" id="left" my-touchstart='press("ArrowLeft", 37)' my-touchend='release("ArrowLeft", 37)'></button>
