@@ -12,12 +12,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+    <script src="assets/vendor/three.min.js"></script>
+    <script src="assets/vendor/mathbox/build/mathbox-bundle.js"></script>
+    <script src="assets/vendor/cbuffer/cbuffer.js"></script>
+    <script src="assets/vendor/dat.gui/dat.gui.js"></script>
+
     <script type='text/javascript' src='assets/controller.js'></script>
 
     <title>Drop64 - Controller</title>
 </head>
 
 <body ng-app="controller" ng-controller='RootController'>
+
+    <script src="assets/sensors/util.js"></script>
+    <script src="assets/sensors/complementary-filter.js"></script>
+    <script src="assets/sensors/plot-sensors.js"></script>
 
     <div class='container'>
         <div class='row main-row'></div>
