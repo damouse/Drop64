@@ -9,7 +9,7 @@ function makeKeyboardEvent(event, key, code) {
 }
 
 // Start socket.io implementation
-var sock = io.connect('localhost:3000');
+var sock = io.connect(window.location.host);
 
 sock.on('connect', () => {
   sock.emit('command', 'connected');
