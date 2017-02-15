@@ -35,7 +35,6 @@ body {
     border-radius: .3em;
     background-color: #2a2a2a;
     width: 40em;
-    height: 17.5em;
     color: #c3442d;
     font: 15px/2 nescontroller, sans-serif;
     -webkit-user-select: none;
@@ -47,11 +46,29 @@ body {
     .15em .2em 0 hsla(0, 0%, 78%, 1), .225em .3em 0 hsla(0, 0%, 76%, 1), .3em .4em 0 hsla(0, 0%, 74%, 1), .375em .5em 0 .1em hsla(0, 0%, 72%, 1), .425em .6em 0 .1em hsla(0, 0%, 70%, 1), .5em .7em 0 .1em hsla(0, 0%, 68%, 1), .575em .8em 0 .1em hsla(0, 0%, 66%, 1), .65em .9em 0 .1em hsla(0, 0%, 64%, 1), .725em 1em 0 .1em hsla(0, 0%, 62%, 1), .775em 1.1em 0 .08em hsla(0, 0%, 40%, 1), /* back piece */
     .800em 1.1em 0 .13em hsla(0, 0%, 60%, 1), .875em 1.2em 0 .13em hsla(0, 0%, 58%, 1), .950em 1.3em 0 .13em hsla(0, 0%, 56%, 1), 1.025em 1.4em 0 .13em hsla(0, 0%, 54%, 1), 1.1em 1.5em 0 .13em hsla(0, 0%, 52%, 1), 1.175em 1.6em 0 .13em hsla(0, 0%, 50%, 1), 0.4em 1.1em .5em hsla(0, 0%, 20%, .1), /* shadow */
     0.8em 1.3em .6em hsla(0, 0%, 20%, .1), 1.2em 1.6em .7em hsla(0, 0%, 20%, .1), 1.6em 1.8em .8em hsla(0, 0%, 20%, .1), 2em 2em .9em hsla(0, 0%, 20%, .1), 2.4em 2.2em 1em hsla(0, 0%, 20%, .1), 2.8em 2.4em 1.1em hsla(0, 0%, 20%, .1), 3.2em 2.6em 1.2em hsla(0, 0%, 20%, .1), 3.6em 2.8em 1.3em hsla(0, 0%, 20%, .1), 4em 3em 1.4em hsla(0, 0%, 20%, .1);
+    // @media only screen and ( min-device-width: 320px) and (max-device-width: 800px) and (-webkit-min-device-pixel-ratio: 2) {
+    //     #nespad {
+    //         margin: 120px 0px 0px 180px !important;
+    //         // height: 50vh;
+    //     }
+    // }
 }
 
+// body {
+//     background: #45484d;
+//     /* Old browsers */
+//     background: -moz-linear-gradient(top, #45484d 0%, #000000 100%);
+//     /* FF3.6-15 */
+//     background: -webkit-linear-gradient(top, #45484d 0%, #000000 100%);
+//     /* Chrome10-25,Safari5.1-6 */
+//     background: linear-gradient(to bottom, #45484d 0%, #000000 100%);
+//     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+//     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=0);
+//     // height: 100vh;
+// }
 .cord {
     position: absolute;
-    top: -1em;
+    top: -6em;
     width: 1.1em;
     height: 3em;
     background-color: #bbb;
@@ -399,14 +416,10 @@ body {
 
 /* Portrait */
 
-// @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
-//     html {
-//         transform: rotate(-90deg);
-//         transform-origin: left top;
-//         width: 100vh;
-//         overflow-x: hidden;
-//         position: absolute;
-//         top: 100%;
-//         left: 0;
+// @media screen and (min-width: 320px) and (max-width: 767px) {
+//     #nespad {
+//         transform: scale(1);
+//         // margin: 120px 0px 0px 180px;
+//         /* height: 50vh; */
 //     }
 // }
