@@ -2,18 +2,27 @@
 
 Nintendo N64 displayed in a browser window and controlled by a smartphone. Emscripten compiled mupen64plus, ionic app, and socket.io proxy of input. 
 
-To run: 
+You need to bring your own ROM to play, games are not hosted here. 
+
+Note that the controller portion of this app comes in a smartphone flavor too. See damouse/Drop64_App for that version.
+
+## Running
+
+To run on a local computer:
 
 ```
 npm install
 npm start 
 ```
 
-Go to [localhost:3000/](localhost:3000) in your browser and [localhost:3000/controller](localhost:3000/controller) on phone. 
+Go to [localhost:3000/](http://localhost:3000) in your browser and [localhost:3000/controller](http://localhost:3000/controller) on phone. 
 
-Games are not hosted here, go find a ROM for the game you want to play. You'll need to upload it on the display page.
+To run on a paradrop router:
 
-Note that the controller portion of this app comes in a smartphone flavor too. See damouse/Drop64_App for that version.
+- Install the chute from [paradrop.org](http://paradrop.org) on your already provisioned router. The chute is called `nintendo64`.
+- Connect to the router's WiFi
+- Go to [192.168.1.1:3000](http://192.168.1.1:3000) in your browser
+- Go to [192.168.1.1:3000/controller](http://192.168.1.1:3000/controller) on your smartphone
 
 ## In Progress
 
