@@ -12,7 +12,6 @@
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-touch.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="assets/three.min.js"></script>
@@ -22,11 +21,9 @@
     <script src='assets/ngTouchStart.min.js'></script>
 
     <script type='text/javascript' src='assets/controller.js'></script>
-
 </head>
 
 <body ng-app="controller" ng-controller='RootController' id='main-content-wrap'>
-    {{counter}}
     <figure id="nespad">
         <div class="cord"></div>
         <section class="dpad-pane">
@@ -67,32 +64,7 @@
     <!-- <script src="assets/util.js"></script> -->
     <!-- <script src="assets/complementary-filter.js"></script> -->
     <!-- <script src="assets/plot-sensors.js"></script> -->
-    <!--
-
-    <div class='container'>
-        <div class='row main-row'> </div>
-        <div class='row main-row'>
-            <div class='controls left-controls text-center'>
-                <div class='row'>
-                    <button id='aaa' type='button' class='gamepad-button' my-touchstart='press("ArrowUp", 38)' my-touchend='release("ArrowUp", 38)'>Up</button>
-                </div>
-                <button class='gamepad-button' my-touchstart='press("ArrowLeft", 37)' my-touchend='release("ArrowLeft", 37)'>Left</button>
-                <button class='gamepad-button' my-touchstart='press("ArrowDown", 40)' my-touchend='release("ArrowDown", 40)'>Down</button>
-                <button class='gamepad-button' my-touchstart='press("ArrowRight", 39)' my-touchend='release("ArrowRight", 39)'>Right</button>
-            </div>
-            <div class='controls mid-controls text-center'>
-                {{ counter }}
-                <button class='gamepad-button' my-touchstart='press("Enter", 13)' my-touchend='release("Enter", 13)'>Start</button>
-                <button class='gamepad-button' my-touchstart='press("z", 90)' my-touchend='release("z", 90)'>Z</button>
-            </div>
-            <div class='controls right-controls text-center'>
-                <button class='gamepad-button' my-touchstart='press("g", 71)' my-touchend='release("g", 71)'>A</button>
-                <button class='gamepad-button' my-touchstart='press("f", 70)' my-touchend='release("f", 70)'>B</button>
-            </div>
-        </div>
-        <div class='row main-row'></div> -->
     <script type='text/javascript' src='assets/nes.js'></script>
-
 </body>
 
 </html>

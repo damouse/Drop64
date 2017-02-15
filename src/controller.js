@@ -14,7 +14,8 @@ angular.module('controller', [])
         });
       });
     };
-  }]).directive('myTouchend', [function() {
+  }])
+  .directive('myTouchend', [function() {
     return function(scope, element, attr) {
 
       element.on('touchend', function(event) {
@@ -30,27 +31,18 @@ angular.module('controller', [])
       });
     };
   }])
+  .controller('RootController', function($scope, $location) {
+    var socket = io.connect($location.$$host + ':' + $location.$$port);
 
+    socket.on('connect', function() {
+      socket.emit('command', 'Controller Connected');
+    });
 
-.controller('RootController', function($scope, $location) {
-  var socket = io.connect($location.$$host + ':' + $location.$$port);
-  $scope.counter = 0;
+    $scope.press = function(b, k) {
+      socket.emit("controller", { event: 'keydown', button: b, code: k });
+    };
 
-  console.log("HELLO")
-
-  socket.on('connect', function() {
-    socket.emit('command', 'Controller Connected');
-  });
-
-
-  $scope.press = function(b, k) {
-    $scope.counter++;
-    socket.emit("controller", { event: 'keydown', button: b, code: k });
-  };
-
-  // Touch stopped
-  $scope.release = function(b, k) {
-    $scope.counter++;
-    socket.emit("controller", { event: 'keyup', button: b, code: k });
-  };
-})
+    $scope.release = function(b, k) {
+      socket.emit("controller", { event: 'keyup', button: b, code: k });
+    };
+  })
