@@ -16,7 +16,7 @@
   "license": "MIT",
   "homepage": "https://github.com/christianalfoni/webpack-express-boilerplate",
   "scripts": {
-    "start": "node src/server"
+    "start": "node src/server",
   },
   "dependencies": {
     "babel-cli": "^6.4.0",

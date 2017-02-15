@@ -11,7 +11,7 @@
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-touch.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-touch.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="assets/three.min.js"></script>
@@ -24,13 +24,50 @@
 </head>
 
 <body ng-app="controller" ng-controller='RootController'>
+    <figure id="nespad">
+        <div class="cord"></div>
+        <section class="dpad-pane">
+            <div class="dpad-hole"></div>
+            <div id="dpad">
+                <canvas height="150" id="dpad-body" width="150"></canvas>
+                <button class="button" id="up" ng-mousedown='press("ArrowUp", 38)' ng-mouseup='release("ArrowUp", 38)'></button>
+                <button class="button" id="right" ng-mousedown='press("ArrowRight", 39)' ng-mouseup='release("ArrowRight", 39)'></button>
+                <button class="button" id="down" ng-mousedown='press("ArrowDown", 40)' ng-mouseup='release("ArrowDown", 40)'></button>
+                <button class="button" id="left" ng-mousedown='press("ArrowLeft", 37)' ng-mouseup='release("ArrowLeft", 37)'></button>
+            </div>
+        </section>
+        <section class="menu-pane">
+            <div class="labels">
+                <label class="select" for="select"> Z</label>
+                <label class="start" for="start">Start</label>
+            </div>
+            <div class="buttons">
+                <button class="button select" id="select" ng-mousedown='press("z", 90)' ng-mouseup='release("z", 90)'>Select</button>
+                <button class="button start" id="start" ng-mousedown='press("Enter", 13)' ng-mouseup='release("Enter", 13)'>Start</button>
+            </div>
+        </section>
+        <section class="action-pane">
+            <div class="logo">
+                Nintendo
+            </div>
+            <div class="buttons">
+                <label class="label">B
+                    <button class="button" id="b" ng-mousedown='press("f", 70)' ng-mouseup='release("f", 70)'></button>
+                </label>
+                <label class="label">A
+                    <button class="button" id="a" ng-mousedown='press("g", 71)' ng-mouseup='release("g", 71)'></button>
+                </label>
+            </div>
+        </section>
+    </figure>
 
     <!-- <script src="assets/util.js"></script> -->
     <!-- <script src="assets/complementary-filter.js"></script> -->
     <!-- <script src="assets/plot-sensors.js"></script> -->
+    <!--
 
     <div class='container'>
-        <div class='row main-row'></div>
+        <div class='row main-row'> </div>
         <div class='row main-row'>
             <div class='controls left-controls text-center'>
                 <div class='row'>
@@ -41,6 +78,7 @@
                 <button class='gamepad-button' ng-mousedown='press("ArrowRight", 39)' ng-mouseup='release("ArrowRight", 39)'>Right</button>
             </div>
             <div class='controls mid-controls text-center'>
+                {{ counter }}
                 <button class='gamepad-button' ng-mousedown='press("Enter", 13)' ng-mouseup='release("Enter", 13)'>Start</button>
                 <button class='gamepad-button' ng-mousedown='press("z", 90)' ng-mouseup='release("z", 90)'>Z</button>
             </div>
@@ -49,7 +87,8 @@
                 <button class='gamepad-button' ng-mousedown='press("f", 70)' ng-mouseup='release("f", 70)'>B</button>
             </div>
         </div>
-        <div class='row main-row'></div>
+        <div class='row main-row'></div> -->
+    <script type='text/javascript' src='assets/nes.js'></script>
 
 </body>
 

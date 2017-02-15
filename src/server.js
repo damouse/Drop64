@@ -11,7 +11,10 @@ for (var d of["stylesheets", "vendor", "sensors", "src"]) {
 }
 
 io.on('connection', (socket) => {
-  socket.on("controller", (m) => io.emit('input', m))
+  socket.on("controller", (m) => {
+    console.log(m)
+    io.emit('input', m)
+  })
   socket.on("command", (m) => io.emit('command', m))
 });
 
