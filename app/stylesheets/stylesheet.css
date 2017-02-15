@@ -442,7 +442,7 @@ Full-Width Styles
 
 #main_content_wrap {
     background: #f2f2f2;
-    height: 100%;
+    height: 100vh;
 }
 
 #main_content {
@@ -615,4 +615,35 @@ canvas.emscripten {
     color: white;
     font-family: 'Lucida Console', Monaco, monospace;
     outline: none;
+}
+
+// Just for the sensors testing
+.pane {
+    background-color: transparent;
+}
+
+.main-row {
+    height: 33vh;
+}
+
+.main-col {
+    width: 33vw;
+}
+
+.controls {
+    width: 33vw;
+}
+
+.left-controls {}
+
+.right-controls {}
+
+.mid-controls {}
+
+.gamepad-button {
+    width: 100px;
+    height: 100px;
+    background: none;
+    background-color: green;
+    color: white;
 }

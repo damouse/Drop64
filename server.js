@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 
 app.use('/assets', express.static('./app'));
 app.get('/', (req, res) => { res.sendFile('index.html', { root: './app' }) })
+app.get('/controller', (req, res) => { res.sendFile('controller.html', { root: './app' }) })
 
 io.on('connection', (socket) => {
   socket.on("controller", (m) => io.emit('input', m))

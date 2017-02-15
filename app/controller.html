@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/stylesheets/controller.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type='text/javascript' src='assets/controller.js'></script>
+
+    <title>Drop64 - Controller</title>
+</head>
+
+<body ng-app="controller" ng-controller='RootController'>
+
+    <div class='container'>
+        <div class='row main-row'></div>
+        <div class='row main-row'>
+            <div class='controls left-controls text-center'>
+                <div class='row'>
+                    <button id='aaa' type='button' class='gamepad-button' ng-mousedown='press("ArrowUp", 38)' ng-mouseup='release("ArrowUp", 38)'>Up</button>
+                </div>
+                <button class='gamepad-button' ng-mousedown='press("ArrowLeft", 37)' ng-mouseup='release("ArrowLeft", 37)'>Left</button>
+                <button class='gamepad-button' ng-mousedown='press("ArrowDown", 40)' ng-mouseup='release("ArrowDown", 40)'>Down</button>
+                <button class='gamepad-button' ng-mousedown='press("ArrowRight", 39)' ng-mouseup='release("ArrowRight", 39)'>Right</button>
+            </div>
+            <div class='controls mid-controls text-center'>
+                <button class='gamepad-button' ng-mousedown='press("Enter", 13)' ng-mouseup='release("Enter", 13)'>Start</button>
+                <button class='gamepad-button' ng-mousedown='press("z", 90)' ng-mouseup='release("z", 90)'>Z</button>
+            </div>
+            <div class='controls right-controls text-center'>
+                <button class='gamepad-button' ng-mousedown='press("g", 71)' ng-mouseup='release("g", 71)'>A</button>
+                <button class='gamepad-button' ng-mousedown='press("f", 70)' ng-mouseup='release("f", 70)'>B</button>
+            </div>
+        </div>
+        <div class='row main-row'></div>
+
+</body>
+
+</html>
