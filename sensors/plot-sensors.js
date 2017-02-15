@@ -26,7 +26,7 @@ function loop() {
     lastGyro.applyQuaternion(invGyroOnly);
     lastGyro.normalize();
     gyroHistory.push(lastGyro);
-    console.log('G: ', lastGyro);
+    // console.log('G: ', lastGyro);
   } else {
     gyroHistory.data = [];
   }

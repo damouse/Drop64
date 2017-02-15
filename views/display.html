@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheet.css">
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -20,8 +20,6 @@
                 <div id='filechooser' style="visibility:hidden;">
                     <input type="file" id="files" name="files[]" multiple />
                     <output id="list"></output>
-                    <script>
-                    </script>
                 </div>
                 <div class="emscripten">
                     <progress value="0" max="100" id="progress" hidden=1></progress>
@@ -29,7 +27,7 @@
                 <div class="emscripten_border">
                     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
                 </div>
-                <script type='text/javascript' src='assets/main.js'></script>
+                <script type='text/javascript' src='assets/display.js'></script>
                 <script async type="text/javascript" src="assets/mupen64plus-ui-console.js"></script>
             </p>
         </section>

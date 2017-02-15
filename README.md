@@ -19,4 +19,4 @@ Note that the controller portion of this app comes in a smartphone flavor too. S
 
 - Multiplayer
 - Canvas Streaming 
-
+- Lobbies

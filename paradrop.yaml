@@ -1,4 +1,4 @@
 version: 1
 type: light
 use: node
-command: node server
+command: npm start

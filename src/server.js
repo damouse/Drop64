@@ -3,9 +3,12 @@ const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use('/assets', express.static('./app'));
-app.get('/', (req, res) => { res.sendFile('index.html', { root: './app' }) })
-app.get('/controller', (req, res) => { res.sendFile('controller.html', { root: './app' }) })
+app.get('/', (req, res) => { res.sendFile('display.html', { root: 'views' }) })
+app.get('/controller', (req, res) => { res.sendFile('controller.html', { root: 'views' }) })
+
+for (var d of["stylesheets", "vendor", "sensors", "src"]) {
+  app.use('/assets', express.static(d));
+}
 
 io.on('connection', (socket) => {
   socket.on("controller", (m) => io.emit('input', m))

@@ -16,11 +16,7 @@
   "license": "MIT",
   "homepage": "https://github.com/christianalfoni/webpack-express-boilerplate",
   "scripts": {
-    "test": "",
-    "start": "node server",
-    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "eslint": "eslint .",
-    "jscs": "jscs ."
+    "start": "node src/server"
   },
   "dependencies": {
     "babel-cli": "^6.4.0",
