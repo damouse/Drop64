@@ -68,52 +68,31 @@ var Module = {
 
 Module.setStatus('Downloading...');
 
-var sock = io.connect('localhost:3000');
-
-sock.on('connect', () => {
-  console.log("Connected");
-
-  sock.on("input", (m) => {
-    console.log(m);
-  })
-});
-
-function makeKeyboardEvent(event, key) {
+function makeKeyboardEvent(event, key, code) {
   var e = document.createEvent("KeyboardEvent");
   var initMethod = typeof e.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
 
   e[initMethod](event, true, true, window, false, false, false, false, key.charCodeAt(0), key.charCodeAt(0));
+  console.log(e)
   e._key = key;
-  e._code = 13;
+  e._code = code;
 
   document.dispatchEvent(e);
 }
 
-function mycode() {
-  // makeKeyboardEvent("keydown", 'Enter');
+// Start socket.io implementation
+var sock = io.connect('localhost:3000');
 
-  // setTimeout(function() {
-  //   makeKeyboardEvent("keyup", 'Enter');
-  // }, 100);
+sock.on('connect', () => {
+  sock.emit('command', 'connected');
 
-  // console.log("Emitting")
-  // socket.emit("input", "Display");
-}
+  // Turn each input key into a simulated browser keypress
+  sock.on("input", (m) => {
+    console.log(m.event, m.button);
+    makeKeyboardEvent(m.event, m.button, m.code);
+    // setTimeout(function() {
+    //   makeKeyboardEvent("keyup", key);
+    // }, 100);
 
-
-var tid = setInterval(mycode, 1000);
-
-function abortTimer() { // to be called when you want to stop the timer
-  clearInterval(tid);
-}
-
-// Ending fun stuff
-
-/*
-Todo: 
-  - Ionic setup
-  - Frontend Setup
-  - Websocket command proxying
-  - Basic sensors
-  - Is multiplayer possible?
-*/
+  })
+});
