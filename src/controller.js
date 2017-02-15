@@ -7,6 +7,12 @@ angular.module('controller', [])
           scope.$eval(attr.myTouchstart);
         });
       });
+
+      element.on('mousedown', function(event) {
+        scope.$apply(function() {
+          scope.$eval(attr.myTouchstart);
+        });
+      });
     };
   }]).directive('myTouchend', [function() {
     return function(scope, element, attr) {
@@ -16,12 +22,21 @@ angular.module('controller', [])
           scope.$eval(attr.myTouchend);
         });
       });
+
+      element.on('mouseup', function(event) {
+        scope.$apply(function() {
+          scope.$eval(attr.myTouchend);
+        });
+      });
     };
   }])
+
 
 .controller('RootController', function($scope, $location) {
   var socket = io.connect($location.$$host + ':' + $location.$$port);
   $scope.counter = 0;
+
+  console.log("HELLO")
 
   socket.on('connect', function() {
     socket.emit('command', 'Controller Connected');
@@ -29,15 +44,13 @@ angular.module('controller', [])
 
 
   $scope.press = function(b, k) {
+    $scope.counter++;
     socket.emit("controller", { event: 'keydown', button: b, code: k });
   };
 
   // Touch stopped
   $scope.release = function(b, k) {
+    $scope.counter++;
     socket.emit("controller", { event: 'keyup', button: b, code: k });
   };
 })
-
-/**
- * Add handlers to dpad-buttons
- */
