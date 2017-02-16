@@ -82,159 +82,162 @@ var SensorFusion = function() {
 };
 
 var fusion = new SensorFusion();
-var gui = new dat.GUI();
-gui.add(fusion, 'kFilter').min(0).max(1).step(0.01).onChange(onKFilterChanged);
-gui.add(fusion, 'predictionTime').min(0).max(0.2).step(0.01).onChange(onPredictionTimeChanged);
-gui.add(fusion, 'axis', AXES).onChange(onAxisChanged);
-gui.add(fusion, 'isAccelerometer')
-gui.add(fusion, 'isGyroscope')
-gui.add(fusion, 'isFusion')
-gui.add(fusion, 'isPrediction')
 
-loop();
+var doGraph = function() {
+  var gui = new dat.GUI();
+  gui.add(fusion, 'kFilter').min(0).max(1).step(0.01).onChange(onKFilterChanged);
+  gui.add(fusion, 'predictionTime').min(0).max(0.2).step(0.01).onChange(onPredictionTimeChanged);
+  gui.add(fusion, 'axis', AXES).onChange(onAxisChanged);
+  gui.add(fusion, 'isAccelerometer')
+  gui.add(fusion, 'isGyroscope')
+  gui.add(fusion, 'isFusion')
+  gui.add(fusion, 'isPrediction')
 
-mathbox = mathBox({
-  plugins: ['core', 'cursor'],
-  camera: {
-    fov: 30,
-  },
-});
-three = mathbox.three;
+  loop();
 
-three.camera.position.set(0, 0, 10);
-three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
+  mathbox = mathBox({
+    plugins: ['core', 'cursor'],
+    camera: {
+      fov: 30,
+    },
+  });
+  three = mathbox.three;
 
-view = mathbox.set('focus', 6).cartesian({
-  range: [
-    [0, 1],
-    [-1, 1],
-    [-1, 1]
-  ],
-  scale: [1.5, 0.5, 1],
-});
+  three.camera.position.set(0, 0, 10);
+  three.renderer.setClearColor(new THREE.Color(0xFFFFFF), 1.0);
 
-// Setup the scene.
-view.scale({
-    axis: 2,
-    divide: 5,
-  })
-  .format({
-    expr: function(x) {
-      return x.toPrecision(1);
-    }
-  })
-  .label({
-    depth: .5,
-    zIndex: 1
+  view = mathbox.set('focus', 6).cartesian({
+    range: [
+      [0, 1],
+      [-1, 1],
+      [-1, 1]
+    ],
+    scale: [1.5, 0.5, 1],
   });
 
-view.grid({
-  divideX: 8,
-  divideY: 5,
-  width: 1,
-  opacity: 0.5,
-  zBias: -5,
-});
+  // Setup the scene.
+  view.scale({
+      axis: 2,
+      divide: 5,
+    })
+    .format({
+      expr: function(x) {
+        return x.toPrecision(1);
+      }
+    })
+    .label({
+      depth: .5,
+      zIndex: 1
+    });
 
-view.axis({
-  color: new THREE.Color(0x111111),
-  width: 5
-});
+  view.grid({
+    divideX: 8,
+    divideY: 5,
+    width: 1,
+    opacity: 0.5,
+    zBias: -5,
+  });
 
-view.array({
-  data: [
-    [1.02, 0, 0]
-  ],
-  channels: 1, // necessary
-  live: false,
-}).text({
-  data: ['t']
-}).label({
-  color: 0x000000,
-});
+  view.axis({
+    color: new THREE.Color(0x111111),
+    width: 5
+  });
 
-
-// Plot accelerometer.
-view.interval({
-  length: HISTORY_SIZE,
-  expr: function(emit, x, i, t) {
-    var accel = accelHistory.get(i);
-    if (accel) {
-      emit(x, accel[fusion.axis]);
-    }
-  },
-  items: 1,
-  channels: 2,
-});
-
-view.line({
-  color: 0x30DD30,
-  width: 4,
-  size: 1,
-  start: false,
-  end: false,
-});
+  view.array({
+    data: [
+      [1.02, 0, 0]
+    ],
+    channels: 1, // necessary
+    live: false,
+  }).text({
+    data: ['t']
+  }).label({
+    color: 0x000000,
+  });
 
 
-// Plot gyroscope.
-view.interval({
-  length: HISTORY_SIZE,
-  expr: function(emit, x, i, t) {
-    var gyro = gyroHistory.get(i);
-    if (gyro) {
-      emit(x, gyro[fusion.axis]);
-    }
-  },
-  items: 1,
-  channels: 2,
-});
+  // Plot accelerometer.
+  view.interval({
+    length: HISTORY_SIZE,
+    expr: function(emit, x, i, t) {
+      var accel = accelHistory.get(i);
+      if (accel) {
+        emit(x, accel[fusion.axis]);
+      }
+    },
+    items: 1,
+    channels: 2,
+  });
 
-view.line({
-  color: 0x3090FF,
-  width: 4,
-  size: 1,
-  start: false,
-  end: false,
-});
+  view.line({
+    color: 0x30DD30,
+    width: 4,
+    size: 1,
+    start: false,
+    end: false,
+  });
 
-// Plot complementary filter output.
-view.interval({
-  length: HISTORY_SIZE,
-  expr: function(emit, x, i, t) {
-    var filter = filterHistory.get(i);
-    if (filter) {
-      emit(x, filter[fusion.axis]);
-    }
-  },
-  items: 1,
-  channels: 2,
-});
 
-view.line({
-  color: 0xFF9030,
-  width: 7,
-  size: 1,
-  start: false,
-  end: false,
-});
+  // Plot gyroscope.
+  view.interval({
+    length: HISTORY_SIZE,
+    expr: function(emit, x, i, t) {
+      var gyro = gyroHistory.get(i);
+      if (gyro) {
+        emit(x, gyro[fusion.axis]);
+      }
+    },
+    items: 1,
+    channels: 2,
+  });
 
-// Plot predict out.
-view.interval({
-  length: HISTORY_SIZE,
-  expr: function(emit, x, i, t) {
-    var predict = predictHistory.get(i);
-    if (predict) {
-      emit(x, predict[fusion.axis]);
-    }
-  },
-  items: 1,
-  channels: 2,
-});
+  view.line({
+    color: 0x3090FF,
+    width: 4,
+    size: 1,
+    start: false,
+    end: false,
+  });
 
-view.line({
-  color: 'red',
-  width: 4,
-  size: 1,
-  start: false,
-  end: false,
-});
+  // Plot complementary filter output.
+  view.interval({
+    length: HISTORY_SIZE,
+    expr: function(emit, x, i, t) {
+      var filter = filterHistory.get(i);
+      if (filter) {
+        emit(x, filter[fusion.axis]);
+      }
+    },
+    items: 1,
+    channels: 2,
+  });
+
+  view.line({
+    color: 0xFF9030,
+    width: 7,
+    size: 1,
+    start: false,
+    end: false,
+  });
+
+  // Plot predict out.
+  view.interval({
+    length: HISTORY_SIZE,
+    expr: function(emit, x, i, t) {
+      var predict = predictHistory.get(i);
+      if (predict) {
+        emit(x, predict[fusion.axis]);
+      }
+    },
+    items: 1,
+    channels: 2,
+  });
+
+  view.line({
+    color: 'red',
+    width: 4,
+    size: 1,
+    start: false,
+    end: false,
+  });
+}

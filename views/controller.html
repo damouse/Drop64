@@ -5,7 +5,7 @@
   <title>Drop64 - Controller</title>
   <meta charset='utf-8' />
   <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
   <link rel="stylesheet" type="text/css" media="screen" href="/assets/controller.css">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,13 +20,19 @@
   <script src="assets/dat.gui/dat.gui.js"></script>
   <script src='assets/ngTouchStart.min.js'></script>
 
+  <script src="assets/util.js"></script>
+  <script src="assets/complementary-filter.js"></script>
+  <script src="assets/plot-sensors.js"></script>
+
   <script type='text/javascript' src='assets/controller.js'></script>
 </head>
 
 <body ng-app="controller" ng-controller='RootController' id='main-content-wrap'>
+  <!-- {{ accel }} -->
+
   <figure id="nespad">
     <div class="cord"></div>
-    <!-- <div class="pane-wrapper"> -->
+
     <section class="pane-wrapper">
       <section class="dpad-pane">
         <div class="dpad-hole"></div>
@@ -39,8 +45,7 @@
         </div>
       </section>
     </section>
-    <!-- </div> -->
-    <!-- <div class="pane-wrapper"> -->
+
     <section class="menu-pane pane-wrapper">
       <div class="labels">
         <label class="select" for="select"> Z</label>
@@ -51,8 +56,7 @@
         <button class="button start" id="start" my-touchstart='press("Enter", 13)' my-touchend='release("Enter", 13)'>Start</button>
       </div>
     </section>
-    <!-- </div> -->
-    <!-- <div class="pane-wrapper"> -->
+
     <section class="action-pane pane-wrapper">
       <div class="logo nlogo">
         Nintendo
@@ -66,12 +70,8 @@
         </label>
       </div>
     </section>
-    <!-- </div> -->
   </figure>
 
-  <!-- <script src="assets/util.js"></script> -->
-  <!-- <script src="assets/complementary-filter.js"></script> -->
-  <!-- <script src="assets/plot-sensors.js"></script> -->
   <script type='text/javascript' src='assets/nes.js'></script>
 </body>
 
