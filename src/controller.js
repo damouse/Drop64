@@ -2,7 +2,6 @@ angular.module('controller', [])
 
 .directive('myTouchstart', [function() {
   return function(scope, element, attr) {
-
     element.on('touchstart', function(event) {
       scope.$apply(function() {
         scope.$eval(attr.myTouchstart);
@@ -19,7 +18,6 @@ angular.module('controller', [])
 
 .directive('myTouchend', [function() {
   return function(scope, element, attr) {
-
     element.on('touchend', function(event) {
       scope.$apply(function() {
         scope.$eval(attr.myTouchend);
@@ -44,7 +42,6 @@ From Prediction:
 */
 .controller('RootController', function($scope, $location) {
   var socket = io.connect($location.$$host + ':' + $location.$$port);
-  // var socket = io.connect('http://home.paradrop.org:32769/');
 
   // Are we currently "turning"?
   var isGestureTurningLeft = false;
